@@ -1,0 +1,12 @@
+;; counter.func
+int counter = 0;
+
+() recv_internal(slice in_msg, cell in_msg_body, int msg_value, int msg_bounced) {
+  int op = in_msg_body~load_uint(32);
+  int val = in_msg_body~load_uint(32);
+  if (op == 1) {
+    counter += val;
+  } else if (op == 2) {
+    counter -= val;
+  }
+}
